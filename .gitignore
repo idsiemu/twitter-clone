@@ -59,9 +59,9 @@ buck-out/
 /ios/Pods/
 
 /Android
+
 yarn.lock
 
-.env
 package-lock.json
 
-src/constants/firebase.ts
+/src/constants
