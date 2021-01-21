@@ -36,6 +36,7 @@ const Navigation : FC = () => {
             if(loading){
                 dispatch(setLoading(false))
             }
+
         })
     }, [])
     return (
