@@ -1,11 +1,11 @@
-import React, {FC, FunctionComponent} from 'react'
+import React, {FC} from 'react'
 import { Text, View } from 'react-native';
 
 const Home: FC = () => {
     return (
         <View>
             <Text>
-                home
+                board
             </Text>
         </View>
     )

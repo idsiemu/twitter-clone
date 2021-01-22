@@ -7,6 +7,7 @@ import {RootState} from '~/reducers';
 import auth from '@react-native-firebase/auth';
 import { setLoading, setUser } from '~/actions/user';
 import { Text, View, StyleSheet} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 
 const styles = StyleSheet.create({
@@ -36,7 +37,7 @@ const Navigation : FC = () => {
             if(loading){
                 dispatch(setLoading(false))
             }
-
+            SplashScreen.hide()
         })
     }, [])
     return (

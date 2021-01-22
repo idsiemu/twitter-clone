@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import {createStackNavigator} from '@react-navigation/stack';
-import Home from '~/screens/home';
+import Board from '~/screens/board';
 
 const {Navigator, Screen} = createStackNavigator();
 
 const AppStack : FC = () => {
     return (
         <Navigator>
-            <Screen name="home" component={Home}/>
+            <Screen name="board" component={Board}/>
         </Navigator>
     )
 }
