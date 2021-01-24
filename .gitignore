@@ -63,5 +63,3 @@ buck-out/
 yarn.lock
 
 package-lock.json
-
-/src/constants
