@@ -8,6 +8,6 @@ export default StyleSheet.create({
         color: '#1DA1F2'
     },
     blueBackground: {
-        backgroundColor: '#1DA1F2'
+        backgroundColor: '#1DA1F2',
     }
 });
