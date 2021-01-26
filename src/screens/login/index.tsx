@@ -1,11 +1,12 @@
 import React, {FC, useRef, useState, useCallback } from 'react'
 import { Text, View, Image, Animated, SafeAreaView, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard, Button } from 'react-native';
 import { TextInput, TouchableOpacity} from 'react-native-gesture-handler'
+import {StackScreenProps} from '@react-navigation/stack';
 import styles from './styles'
 import globalStyle from '~/constants/globalStyle'
 import auth from '@react-native-firebase/auth';
 
-const Login: FC = () => {
+const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
     const [id, setId] = useState('')
     const [pw, setPw] = useState('')
     const [isLogin, setIsLogin] = useState(false)
@@ -73,7 +74,7 @@ const Login: FC = () => {
                 <View style={styles.middle}>
                     <View>
                         <Text style={{fontSize:30}}>여러분 주위에 무슨일이 일어나고 있는지 알아보세요.</Text>
-                        <TouchableOpacity style={[styles.create, globalStyle.blueBackground]}>
+                        <TouchableOpacity style={[styles.create, globalStyle.blueBackground]} onPress={() => navigation.navigate('signup')}>
                             <Text style={styles.createText}>계정 생성하기</Text>
                         </TouchableOpacity>
                     </View>

@@ -9,7 +9,7 @@ const AuthStack : FC = () => {
     return (
         <Navigator>
             <Screen name="login" component={Login} options={{headerShown: false}}/>
-            <Screen name="signup" component={Signup}/>
+            <Screen name="signup" component={Signup} options={{headerShown: false}}/>
         </Navigator>
     )
 }

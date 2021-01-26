@@ -9,6 +9,7 @@ module.exports = {
           "~": "./src"
         }
       }
-    ]
+    ],
+    ['babel-plugin-styled-components'],
   ]
 };
