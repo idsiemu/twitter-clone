@@ -3,7 +3,6 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import styled from 'styled-components/native';
 
 const Header = () => {
-    console.log(test)
     return (
         <View style={styles.header}>
             <Animated.View style={[{position:'absolute', zIndex: 1, left: 20, opacity: fadeAnim}]}>
