@@ -7,6 +7,7 @@ import globalStyle from '~/constants/globalStyle'
 import auth from '@react-native-firebase/auth';
 
 const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
+    console.log(12342)
     const [id, setId] = useState('')
     const [pw, setPw] = useState('')
     const [isLogin, setIsLogin] = useState(false)
