@@ -1,21 +1,8 @@
 import {StyleSheet} from "react-native";
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const styles = StyleSheet.create({
     container : {
         flex: 1
-    },
-    header: {
-        position:'absolute',
-        width: '100%',
-        justifyContent:'center',
-        alignItems:'center',
-        height: 50,
-        top: getStatusBarHeight()
-    },
-    logoImage: {
-        width: 50,
-        height: 50
     },
     middle: {
         flex : 1,
