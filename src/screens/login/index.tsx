@@ -23,7 +23,6 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
     const [isLogin, setIsLogin] = useState(false);
-    const fadeAnim = useRef(new Animated.Value(0)).current;
     const toggleLogin = useCallback(() => {
         setIsLogin(!isLogin);
     }, [isLogin]);
