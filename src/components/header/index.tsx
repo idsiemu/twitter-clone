@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {TouchableOpacity, Text, View} from 'react-native';
 import styled from 'styled-components/native';
 import globalStyle from '~/constants/globalStyle';
-import {IProps} from './type';
+import { HeaderProps } from './type';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import * as Animatable from 'react-native-animatable';
 import {fadeIn, fadeOut, defaultDuration} from '~/constants/aniOptions';
+import {useSelector, useDispatch} from 'react-redux';
+import {RootState} from '~/reducers';
+import {setLeft, setLeftIcon, setRight, setRightIcon} from '~/actions/header/index';
 
 const HeaderView = styled.View`
     position: absolute;
@@ -23,13 +26,25 @@ const AnimatedView = Animatable.createAnimatableComponent(styled.View`
 
 const HeaderIcon = styled.Image``;
 
-const Header = ({cancel, onPress}: IProps) => {
+const Header: FC<HeaderProps> = ({isArrow}) => {
+    const dispatch = useDispatch();
+    const {left, leftIcon, right, rightIcon} = useSelector((state: RootState) => state.header);
+    const onClickLeft = () => {
+        if(leftIcon === '취소'){
+            dispatch(setLeft(!left))
+        }else{
+            
+        }
+    }
+
     return (
         <HeaderView>
-            <AnimatedView animation={cancel ? fadeIn : fadeOut} duration={defaultDuration} useNativeDriver={false}>
-                <TouchableOpacity onPress={onPress}>
-                    <Text style={[globalStyle.fontSize, globalStyle.blue]}>취소</Text>
-                </TouchableOpacity>
+            <AnimatedView animation={left ? fadeIn : fadeOut} duration={defaultDuration} useNativeDriver={false}>
+                {left &&
+                    <TouchableOpacity onPress={onClickLeft}>
+                        <Text style={[globalStyle.fontSize, globalStyle.blue]}>{leftIcon}</Text>
+                    </TouchableOpacity>
+                }
             </AnimatedView>
             <View>
                 <HeaderIcon source={require('~/images/icons/twitter-48.png')} />

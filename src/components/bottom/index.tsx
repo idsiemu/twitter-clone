@@ -5,13 +5,15 @@ import styled from 'styled-components/native';
 import {BProps} from './type';
 
 const BottomTopLine = styled.View`
-    padding-vertical: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     border-top-width: 1px;
     border-top-color: lightgray;
 `;
 
 const BottomContainer = styled.View`
-    margin-horizontal: 20;
+    margin-left: 20px;
+    margin-right: 20px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

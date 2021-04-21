@@ -1,12 +1,13 @@
-import React, {FC, useRef} from 'react';
-import {Text, Animated, TouchableWithoutFeedback, Keyboard, TextInput} from 'react-native';
+import React, {FC, useEffect} from 'react';
+import {Text, TouchableWithoutFeedback, Keyboard, TextInput} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import styled from 'styled-components/native';
-import Header from '~/components/header';
 import KeyBoardArea from '~/components/keyBoardArea';
 import globalStyle from '~/constants/globalStyle';
 import * as Animatable from 'react-native-animatable';
-import {fadeIn, fadeOut, defaultDuration} from '~/constants/aniOptions';
+import {fadeIn, defaultDuration} from '~/constants/aniOptions';
+import { useDispatch } from 'react-redux';
+import { setLeft, setLeftIcon } from '~/actions/header';
 
 const SignUpContainer = styled.SafeAreaView`
     display: flex;
@@ -16,17 +17,26 @@ const SignUpContainer = styled.SafeAreaView`
 const AnimatedView = Animatable.createAnimatableComponent(styled.View`
     display: flex;
     flex: 1;
-    margin-horizontal: 20px
+    margin-right: 20px;
+    margin-left: 20px;
     padding-top: 90px;
 `);
 
 const Signup: FC<StackScreenProps<any, 'login'>> = ({navigation}) => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(setLeft(true))
+        dispatch(setLeftIcon('<'))
+        return () => {
+            dispatch(setLeft(false))
+            dispatch(setLeftIcon('취소'))
+        }
+    }, [])
     return (
         <SignUpContainer>
-            <Header cancel={true} onPress={() => navigation.goBack()} />
             <KeyBoardArea>
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <AnimatedView>
+                    <AnimatedView animation={fadeIn} duration={defaultDuration}>
                         <Text
                             style={{
                                 textAlign: 'center',

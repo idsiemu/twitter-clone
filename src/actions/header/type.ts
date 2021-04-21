@@ -1,0 +1,3 @@
+import {SETLEFT, SETLEFTICON, SETRIGHT, SETRIGHTICON} from './interface'
+
+export type HeaderActionType = SETLEFT | SETLEFTICON | SETRIGHT | SETRIGHTICON

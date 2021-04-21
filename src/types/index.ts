@@ -3,3 +3,10 @@ export const user = {
     LOGIN : 'LOGIN',
     SETUSER : 'SETUSER'
 }
+
+export const header = {
+    SETLEFT: 'SETHEADERLEFT',
+    SETLEFTICON: 'SETHEADERLEFTICON',
+    SETRIGHT: 'SETHEADERRIGHT',
+    SETRIGHTICON: 'SETHEADERRIGHTICON'
+}

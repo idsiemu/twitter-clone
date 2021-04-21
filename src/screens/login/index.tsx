@@ -1,30 +1,36 @@
-import React, {FC, useRef, useState, useCallback} from 'react';
-import {Text, View, Animated, SafeAreaView, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard, Button} from 'react-native';
+import React, {FC, useState, useCallback} from 'react';
+import {Text, View, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import {StackScreenProps} from '@react-navigation/stack';
 import styles from './styles';
 import globalStyle from '~/constants/globalStyle';
 import auth from '@react-native-firebase/auth';
-import Header from '~/components/header';
 import Bottom from '~/components/bottom';
 import KeyBoardArea from '~/components/keyBoardArea';
 import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
 import {fadeIn, fadeOut, defaultDuration} from '~/constants/aniOptions';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLeft } from '~/actions/header';
+import { RootState } from '~/reducers';
 
 const AnimatedView = Animatable.createAnimatableComponent(styled.View`
     display: flex;
     flex: 1;
-    margin-horizontal: 20px
+    margin-left: 20px;
+    margin-right: 20px;
     padding-top: 90px;
 `);
 
 const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
-    const [isLogin, setIsLogin] = useState(false);
+    const dispatch = useDispatch()
+    const [isLogin, setIslogin] = useState(false)
+    const left = useSelector((state: RootState) => state.header.left);
     const toggleLogin = useCallback(() => {
-        setIsLogin(!isLogin);
+        dispatch(setLeft(!left))
+        setIslogin(!isLogin)
     }, [isLogin]);
 
     const login = useCallback(async () => {
@@ -38,11 +44,10 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Header cancel={isLogin} onPress={() => toggleLogin()}></Header>
             {isLogin ? (
                 <KeyBoardArea>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                        <AnimatedView animation={isLogin ? fadeIn : fadeOut} duration={defaultDuration}>
+                        <AnimatedView animation={left ? fadeIn : fadeOut} duration={defaultDuration}>
                             <Text
                                 style={{
                                     textAlign: 'center',
