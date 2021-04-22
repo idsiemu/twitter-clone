@@ -7,6 +7,9 @@ export default StyleSheet.create({
     blue : {
         color: '#1DA1F2'
     },
+    background : {
+        color: '#FFF'
+    },
     blueBackground: {
         backgroundColor: '#1DA1F2',
     }

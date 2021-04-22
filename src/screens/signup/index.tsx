@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {Text, TouchableWithoutFeedback, Keyboard, TextInput} from 'react-native';
+import {Text, TouchableWithoutFeedback, Keyboard, TextInput } from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import styled from 'styled-components/native';
 import KeyBoardArea from '~/components/keyBoardArea';
@@ -12,6 +12,7 @@ import { setLeft, setLeftIcon } from '~/actions/header';
 const SignUpContainer = styled.SafeAreaView`
     display: flex;
     flex: 1;
+    background-color: ${globalStyle.background.color};
 `;
 
 const AnimatedView = Animatable.createAnimatableComponent(styled.View`
@@ -22,14 +23,12 @@ const AnimatedView = Animatable.createAnimatableComponent(styled.View`
     padding-top: 90px;
 `);
 
-const Signup: FC<StackScreenProps<any, 'login'>> = ({navigation}) => {
+const Signup: FC<StackScreenProps<any, any>> = ({navigation}) => {
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(setLeft(true))
-        dispatch(setLeftIcon('<'))
         return () => {
             dispatch(setLeft(false))
-            dispatch(setLeftIcon('취소'))
+            dispatch(setLeftIcon(false))
         }
     }, [])
     return (

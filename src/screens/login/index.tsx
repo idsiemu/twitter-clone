@@ -1,5 +1,5 @@
-import React, {FC, useState, useCallback} from 'react';
-import {Text, View, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import React, {FC, useState, useCallback, useEffect} from 'react';
+import {Text, View, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import {StackScreenProps} from '@react-navigation/stack';
 import styles from './styles';
@@ -11,8 +11,14 @@ import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
 import {fadeIn, fadeOut, defaultDuration} from '~/constants/aniOptions';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLeft } from '~/actions/header';
+import { setLeft, setLeftIcon } from '~/actions/header';
 import { RootState } from '~/reducers';
+
+const LoginContainer = styled.SafeAreaView`
+    display: flex;
+    flex: 1;
+    background-color: ${globalStyle.background.color};
+`;
 
 const AnimatedView = Animatable.createAnimatableComponent(styled.View`
     display: flex;
@@ -28,7 +34,7 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
     const dispatch = useDispatch()
     const [isLogin, setIslogin] = useState(false)
     const left = useSelector((state: RootState) => state.header.left);
-    const toggleLogin = useCallback(() => {
+    const goToLogin = useCallback(() => {
         dispatch(setLeft(!left))
         setIslogin(!isLogin)
     }, [isLogin]);
@@ -42,8 +48,20 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
         }
     }, [id, pw]);
 
+    useEffect(() => {
+        if(!left){
+            setIslogin(left)
+        }
+    }, [left])
+
+    const onClickSignUp = () => {
+        // dispatch(setLeft(true))
+        // dispatch(setLeftIcon(true))
+        navigation.navigate('signup')
+    }
+
     return (
-        <SafeAreaView style={styles.container}>
+        <LoginContainer>
             {isLogin ? (
                 <KeyBoardArea>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -94,19 +112,19 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
                 <View style={styles.middle}>
                     <View>
                         <Text style={{fontSize: 30}}>여러분 주위에 무슨일이 일어나고 있는지 알아보세요.</Text>
-                        <TouchableOpacity style={[styles.create, globalStyle.blueBackground]} onPress={() => navigation.navigate('signup')}>
+                        <TouchableOpacity style={[styles.create, globalStyle.blueBackground]} onPress={onClickSignUp}>
                             <Text style={styles.createText}>계정 생성하기</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.bottom}>
                         <Text>이미 계정이 있으신가요?</Text>
-                        <TouchableOpacity onPress={toggleLogin}>
+                        <TouchableOpacity onPress={goToLogin}>
                             <Text style={globalStyle.blue}>로그인</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             )}
-        </SafeAreaView>
+        </LoginContainer>
     );
 };
 

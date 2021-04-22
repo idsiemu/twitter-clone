@@ -4,14 +4,14 @@ import { header } from '~/types'
 
 interface HeaderReducer {
     left: boolean;
-    leftIcon: string;
+    leftIcon: boolean;
     right: boolean;
     rightIcon: string;
 }
 
 export const initialState : HeaderReducer = {
     left: false,
-    leftIcon: '취소',
+    leftIcon: false,
     right: false,
     rightIcon: ''
 }

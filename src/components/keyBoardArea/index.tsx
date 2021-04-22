@@ -4,7 +4,7 @@ import {CProps} from './type';
 
 const KeyBoardArea = ({children}: CProps) => {
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{flex: 1, marginTop: 90}}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{display:'flex', flex: 1, marginTop: 90}}>
             {children}
         </KeyboardAvoidingView>
     );
