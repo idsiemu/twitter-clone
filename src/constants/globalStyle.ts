@@ -12,5 +12,8 @@ export default StyleSheet.create({
     },
     blueBackground: {
         backgroundColor: '#1DA1F2',
+    },
+    disabledColor: {
+        backgroundColor: 'lightskyblue'
     }
 });

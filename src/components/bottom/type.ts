@@ -1,5 +1,7 @@
 export interface BProps {
-    moongu: String;
+    moongu: string;
+    btnName : string;
     hamsu: () => void;
     disabled: boolean;
+    loading? : boolean
 }

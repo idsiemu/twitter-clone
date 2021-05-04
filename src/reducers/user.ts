@@ -1,14 +1,13 @@
 import produce from 'immer';
+import { UserObject } from '~/actions/user/interface';
 import { UserActionType } from '~/actions/user/type';
 import { user } from '~/types';
 
 interface UserReducer {
-    loading: boolean;
-    user: object|null;
+    user: UserObject | null;
 }
 
 export const initialState : UserReducer = {
-    loading: true,
     user: null
 }
 
@@ -16,14 +15,16 @@ export const initialState : UserReducer = {
 const reducer = (state = initialState, action: UserActionType) => {
     return produce(state, (draft) => {
       switch (action.type) {
-        case user.SETLOADING: {
-          draft.loading = action.data
-          break;
-        }
         case user.SETUSER: {
             draft.user = action.data
             break;
         }
+        case user.SETEMAILVERIFY: {
+          if(draft.user){
+            draft.user.emailVerified = action.data
+          }
+          break;
+      }
         default: {
           break;
         }

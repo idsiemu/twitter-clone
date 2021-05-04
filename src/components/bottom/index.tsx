@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, ActivityIndicator} from 'react-native';
 import globalStyle from '~/constants/globalStyle';
 import styled from 'styled-components/native';
 import {BProps} from './type';
@@ -19,16 +19,22 @@ const BottomContainer = styled.View`
     align-items: center;
 `;
 
-const Bottom = ({moongu, hamsu, disabled}: BProps) => {
+const Bottom = ({moongu, btnName, hamsu, disabled, loading}: BProps) => {
     return (
         <BottomTopLine>
             <BottomContainer>
                 <TouchableOpacity>
                     <Text style={globalStyle.blue}>{moongu}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[{borderRadius: 22, padding: 8}, globalStyle.blueBackground]} onPress={hamsu} disabled={disabled}>
-                    <Text style={{color: 'white'}}>로그인</Text>
-                </TouchableOpacity>
+                {loading ?
+                    <TouchableOpacity style={[{alignItems:'center', justifyContent:'center', borderRadius: 22, height:35, width: 70}, disabled ? globalStyle.disabledColor : globalStyle.blueBackground]} onPress={hamsu} disabled={disabled}>
+                        <ActivityIndicator size="small" color='white'/>
+                    </TouchableOpacity>
+                :
+                    <TouchableOpacity style={[{alignItems:'center', justifyContent:'center', borderRadius: 22, height:35, width: 70}, disabled ?globalStyle.disabledColor : globalStyle.blueBackground]} onPress={hamsu} disabled={disabled}>
+                        <Text style={{color: 'white', fontSize:18}}>{btnName}</Text>
+                    </TouchableOpacity>
+                }
             </BottomContainer>
         </BottomTopLine>
     );

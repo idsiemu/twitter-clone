@@ -1,3 +1,3 @@
-import {SETLOADING, LOGIN, SETUSER} from './interface'
+import {LOGIN, SETUSER} from './interface'
 
-export type UserActionType = SETLOADING | LOGIN | SETUSER
+export type UserActionType = LOGIN | SETUSER

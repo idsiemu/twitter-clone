@@ -13,12 +13,8 @@ import {fadeIn, fadeOut, defaultDuration} from '~/constants/aniOptions';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLeft, setLeftIcon } from '~/actions/header';
 import { RootState } from '~/reducers';
+import Container from '~/components/container';
 
-const LoginContainer = styled.SafeAreaView`
-    display: flex;
-    flex: 1;
-    background-color: ${globalStyle.background.color};
-`;
 
 const AnimatedView = Animatable.createAnimatableComponent(styled.View`
     display: flex;
@@ -41,10 +37,9 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
 
     const login = useCallback(async () => {
         try {
-            const data = await auth().signInWithEmailAndPassword(id, pw);
-            console.log(data);
+            await auth().signInWithEmailAndPassword(id, pw);
         } catch (e) {
-            console.log(e);
+            
         }
     }, [id, pw]);
 
@@ -61,7 +56,7 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
     }
 
     return (
-        <LoginContainer>
+        <Container>
             {isLogin ? (
                 <KeyBoardArea>
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -106,7 +101,7 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
                             />
                         </AnimatedView>
                     </TouchableWithoutFeedback>
-                    <Bottom moongu={'비밀번호를 잊으셧나요?'} hamsu={login} disabled={id === '' && pw === '' ? true : false} />
+                    <Bottom moongu={'비밀번호를 잊으셧나요?'} btnName={'로그인'} hamsu={login} disabled={id === '' && pw === '' ? true : false} />
                 </KeyBoardArea>
             ) : (
                 <View style={styles.middle}>
@@ -124,7 +119,7 @@ const Login: FC<StackScreenProps<any, any>> = ({navigation}) => {
                     </View>
                 </View>
             )}
-        </LoginContainer>
+        </Container>
     );
 };
 

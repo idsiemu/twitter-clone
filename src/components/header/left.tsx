@@ -7,7 +7,6 @@ import {RootState} from '~/reducers';
 import { Text, TouchableOpacity } from 'react-native';
 import { setLeft } from '~/actions/header';
 
-
 const ViewIcon = styled.View`
     height: 48px;
     display:flex;

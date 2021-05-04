@@ -1,7 +1,7 @@
 export const user = {
-    SETLOADING : 'SETAUTHLOADING',
     LOGIN : 'LOGIN',
-    SETUSER : 'SETUSER'
+    SETUSER : 'SETUSER',
+    SETEMAILVERIFY : 'SETEMAILVERIFY'
 }
 
 export const header = {
