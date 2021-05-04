@@ -6,6 +6,7 @@ import Verify from '~/screens/verify';
 import { UserObject } from '~/actions/user/interface';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyle from '~/constants/globalStyle';
+import Left from '~/components/header/left';
 const {Navigator, Screen} = createStackNavigator();
 
 const AppStack : FC<UserObject> = (props) => {
@@ -14,7 +15,13 @@ const AppStack : FC<UserObject> = (props) => {
             {(props.emailVerified || props.phoneNumber) ?
                 (
                     <React.Fragment>
-                        <Screen name="home" component={Home}/>
+                        <Screen name="home" component={Home} options={{
+                            title: '',
+                            headerTransparent:true,
+                            headerTitle: () => <Icon name="twitter" size={48} color={globalStyle.blue.color} style={{zIndex: 10}}/>,
+                            headerTitleAlign: 'center',
+                            headerLeft: (props) => <Left {...props}/>
+                        }}/>
                         <Screen name="board" component={Board}/>
                     </React.Fragment>
                 )
